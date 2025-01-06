@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import Card from "./Components/Card";
+import Campaigns from "./Components/Campaigns";
+import Categories from "./Components/Categories";
+import Favorites from "./Components/Favorites";
+import Footer from "./Components/Footer";
+import Header from "./Components/Header";
+import HeroSection from "./Components/HeroSection";
+import MobileApp from "./Components/MobileApp";
+import { useWindowSize } from 'react-use';
+
 
 function App() {
+  const { width } = useWindowSize();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header></Header>
+      {width <= 768 ? <Campaigns></Campaigns> : null}
+      <HeroSection></HeroSection>
+      <Categories></Categories>
+      {width > 768 ? <Campaigns></Campaigns> : null}
+
+      <div className="container mx-auto">
+        <Favorites></Favorites>
+        <MobileApp></MobileApp>
+        <Card></Card>
+        <Footer></Footer>
+      </div>
+
+
     </div>
   );
 }
